@@ -3,10 +3,12 @@ import 'package:get_storage/get_storage.dart';
 import 'package:get/get.dart';
 import 'package:taxi_booking_app/themes.dart';
 import 'package:taxi_booking_app/views/home_page.dart';
-
+import 'api.dart';
 import 'controllers/locale_controller.dart';
 import 'controllers/theme_controller.dart';
 import 'locale.dart';
+
+Api api = Api();
 
 void main() async {
   await GetStorage.init();
