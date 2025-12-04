@@ -7,7 +7,7 @@ import '../services/remote_services/taxi_data_service.dart';
 class TaxiDataController extends GetxController {
   @override
   void onInit() {
-    fetchTaxiData();
+    // fetchTaxiData();
     super.onInit();
   }
 
@@ -26,6 +26,8 @@ class TaxiDataController extends GetxController {
     if (taxiData == null) {
       await fetchTaxiData();
     }
+    drivers.addAll(taxiData!.drivers);
+    fareRules = taxiData.fareRules;
     toggleLoading(false);
   }
 }

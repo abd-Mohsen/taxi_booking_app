@@ -13,15 +13,18 @@ class HomePage extends StatelessWidget {
     ColorScheme cs = Theme.of(context).colorScheme;
     TextTheme tt = Theme.of(context).textTheme;
 
-    return Scaffold(
-      appBar: AppBar(),
-      backgroundColor: cs.surface,
-      body: GetBuilder<HomeController>(
-        init: HomeController(),
-        builder: (homeController) {
-          return Stack(
-            children: [
-              GetBuilder<TaxiDataController>(
+    return SafeArea(
+      child: Scaffold(
+        appBar: AppBar(
+          backgroundColor: Colors.transparent,
+        ),
+        backgroundColor: cs.surface,
+        body: GetBuilder<HomeController>(
+          init: HomeController(),
+          builder: (homeController) {
+            return Stack(
+              children: [
+                GetBuilder<TaxiDataController>(
                   init: TaxiDataController(),
                   builder: (taxiDataController) {
                     return ModalProgressHUD(
@@ -30,15 +33,29 @@ class HomePage extends StatelessWidget {
                       progressIndicator: Center(child: CircularProgressIndicator(color: cs.primary)),
                       child: OSMFlutter(
                         controller: homeController.mapController,
+                        mapIsLoading: Center(child: CircularProgressIndicator(color: cs.primary)),
+                        onMapIsReady: (v) {
+                          homeController.onMapLoaded();
+                        },
                         osmOption: OSMOption(
-                            //
+                          zoomOption: const ZoomOption(initZoom: 12),
+                          userLocationMarker: UserLocationMaker(
+                            personMarker: MarkerIcon(
+                              iconWidget: Icon(Icons.person, color: cs.primary, size: 70),
                             ),
+                            directionArrowMarker: MarkerIcon(
+                              iconWidget: Icon(Icons.person, color: cs.primary, size: 70),
+                            ),
+                          ),
+                        ),
                       ),
                     );
-                  })
-            ],
-          );
-        },
+                  },
+                )
+              ],
+            );
+          },
+        ),
       ),
     );
   }
