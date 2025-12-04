@@ -1,9 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_osm_plugin/flutter_osm_plugin.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:taxi_booking_app/controllers/home_controller.dart';
 import 'package:get/get.dart';
 import 'package:taxi_booking_app/controllers/taxi_data_controller.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
+import 'package:taxi_booking_app/models/driver_model.dart';
+
+import 'componenets/blurred_sheet.dart';
+import 'componenets/sheet_details_tile.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -15,9 +21,9 @@ class HomePage extends StatelessWidget {
 
     return SafeArea(
       child: Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.transparent,
-        ),
+        // appBar: AppBar(
+        //   backgroundColor: Colors.transparent,
+        // ),
         backgroundColor: cs.surface,
         body: GetBuilder<HomeController>(
           init: HomeController(),
@@ -36,6 +42,75 @@ class HomePage extends StatelessWidget {
                         mapIsLoading: Center(child: CircularProgressIndicator(color: cs.primary)),
                         onMapIsReady: (v) {
                           homeController.onMapLoaded();
+                        },
+                        onGeoPointClicked: (driverLocation) {
+                          DriverModel driver = homeController.DriverFromLocation[driverLocation]!;
+                          showMaterialModalBottomSheet(
+                            context: context,
+                            backgroundColor: Colors.transparent,
+                            barrierColor: Colors.black.withValues(alpha: 0.5),
+                            enableDrag: true,
+                            builder: (context) => BlurredSheet(
+                              title: "driver info".tr,
+                              confirmText: "ok".tr,
+                              onConfirm: () {
+                                Get.back();
+                              },
+                              content: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Row(
+                                    children: [
+                                      Expanded(
+                                        child: SheetDetailsTile(
+                                          title: "name".tr,
+                                          subtitle: driver.name,
+                                        ),
+                                      ),
+                                      Expanded(
+                                        child: SheetDetailsTile(
+                                          title: "vehicle type".tr,
+                                          subtitle: driver.vehicle.type,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  Row(
+                                    children: [
+                                      Expanded(
+                                        child: SheetDetailsTile(
+                                          title: "plate number".tr,
+                                          subtitle: driver.vehicle.plateNumber,
+                                        ),
+                                      ),
+                                      Expanded(
+                                        child: SheetDetailsTile(
+                                          title: "vehicle name".tr,
+                                          subtitle: driver.vehicle.fullName(),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.only(top: 16.0),
+                                    child: Center(
+                                      child: RatingBarIndicator(
+                                        rating: driver.rating,
+                                        itemBuilder: (context, index) => const Icon(
+                                          Icons.star,
+                                          color: Colors.amber,
+                                        ),
+                                        itemCount: 5,
+                                        itemSize: 30.0,
+                                        unratedColor: Colors.grey,
+                                        direction: Axis.horizontal,
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          );
                         },
                         osmOption: OSMOption(
                           zoomOption: const ZoomOption(initZoom: 12),

@@ -23,4 +23,8 @@ class VehicleModel {
         color: json["color"],
         plateNumber: json["plate_number"],
       );
+
+  String fullName() {
+    return "$make $model $year";
+  }
 }

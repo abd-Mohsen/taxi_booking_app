@@ -20,11 +20,15 @@ class HomeController extends GetxController {
 
   bool isMapLoaded = false;
 
+  Map<GeoPoint, DriverModel> DriverFromLocation = {};
+
   void addDriversMarkers(List<DriverModel> drivers) {
     if (!isMapLoaded) return;
     for (DriverModel driver in drivers) {
+      GeoPoint location = GeoPoint(latitude: driver.location.latitude, longitude: driver.location.longitude);
+      this.DriverFromLocation[location] = driver;
       mapController.addMarker(
-        GeoPoint(latitude: driver.location.latitude, longitude: driver.location.longitude),
+        location,
         markerIcon: MarkerIcon(iconWidget: DriverMarker(driver: driver)),
       );
     }

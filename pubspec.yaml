@@ -28,8 +28,8 @@ dependencies:
   flutter_phone_direct_caller: ^2.1.0
   font_awesome_flutter: ^10.8.0
   app_settings: ^6.0.0
-#  modal_bottom_sheet: ^3.0.0
-#  flutter_rating_bar: ^4.0.1
+  modal_bottom_sheet: ^3.0.0
+  flutter_rating_bar: ^4.0.1
   flutter_timer_countdown: ^1.0.7
   webview_flutter: ^4.13.0
 #  intl: ^0.20.2
