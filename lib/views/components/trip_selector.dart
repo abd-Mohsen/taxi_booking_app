@@ -3,9 +3,10 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
 import 'package:taxi_booking_app/controllers/home_controller.dart';
 import 'package:taxi_booking_app/controllers/request_ride_controller.dart';
-import 'package:taxi_booking_app/views/componenets/category_card.dart';
-import 'package:taxi_booking_app/views/componenets/custom_button.dart';
-import 'package:taxi_booking_app/views/componenets/location_marker.dart';
+
+import 'category_card.dart';
+import 'custom_button.dart';
+import 'location_marker.dart';
 
 class TripSelector extends StatelessWidget {
   const TripSelector({super.key});

@@ -8,11 +8,11 @@ import 'package:get/get.dart';
 import 'package:taxi_booking_app/controllers/taxi_data_controller.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:taxi_booking_app/models/driver_model.dart';
-import 'package:taxi_booking_app/views/componenets/my_drawer.dart';
-import 'package:taxi_booking_app/views/componenets/trip_selector.dart';
 
-import 'componenets/blurred_sheet.dart';
-import 'componenets/sheet_details_tile.dart';
+import 'components/blurred_sheet.dart';
+import 'components/my_drawer.dart';
+import 'components/sheet_details_tile.dart';
+import 'components/trip_selector.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -65,7 +65,7 @@ class HomePage extends StatelessWidget {
                             enableDrag: true,
                             builder: (context) => BlurredSheet(
                               title: "driver info".tr,
-                              confirmText: "ok".tr,
+                              confirmText: "close".tr,
                               onConfirm: () {
                                 Get.back();
                               },

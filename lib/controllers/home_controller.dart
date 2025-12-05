@@ -4,11 +4,10 @@ import 'package:taxi_booking_app/controllers/current_location_controller.dart';
 import 'package:taxi_booking_app/controllers/taxi_data_controller.dart';
 import 'package:taxi_booking_app/models/driver_model.dart';
 import 'package:taxi_booking_app/models/fare_rules_model.dart';
-import 'package:taxi_booking_app/views/componenets/driver_marker.dart';
-import 'package:taxi_booking_app/views/componenets/location_marker.dart';
-
 import '../services/remote_services/calculate_distance_service.dart';
 import 'package:flutter/material.dart';
+import '../views/components/driver_marker.dart';
+import '../views/components/location_marker.dart';
 
 class HomeController extends GetxController {
   @override
@@ -77,6 +76,7 @@ class HomeController extends GetxController {
   void addDriversMarkers(List<DriverModel> drivers) {
     if (!isMapLoaded) return;
     for (DriverModel driver in drivers) {
+      if (!driver.isAvailable) continue;
       GeoPoint location = GeoPoint(latitude: driver.location.latitude, longitude: driver.location.longitude);
       driverFromLocation[location] = driver;
       mapController.addMarker(
@@ -154,7 +154,7 @@ class HomeController extends GetxController {
 
   //---------
 
-  bool isPanelHidden = true;
+  bool isPanelHidden = false;
 
   void toggleHiddenPanel() {
     isPanelHidden = !isPanelHidden;

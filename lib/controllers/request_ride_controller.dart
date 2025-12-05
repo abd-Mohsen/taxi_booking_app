@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:taxi_booking_app/views/driver_accepted_page.dart';
 
 class RequestRideController extends GetxController {
   bool isLoading = false;
@@ -10,7 +11,7 @@ class RequestRideController extends GetxController {
   Future<void> requestRide() async {
     toggleLoading(true);
     await Future.delayed(const Duration(seconds: 2));
-    // todo go to driver accepted page
+    Get.to(() => DriverAcceptedPage());
     toggleLoading(false);
   }
 }

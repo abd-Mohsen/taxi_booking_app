@@ -25,7 +25,8 @@ class CategoryCard extends StatelessWidget {
         padding: const EdgeInsets.symmetric(vertical: 8),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(8),
-          color: selected ? cs.primary : cs.secondaryContainer,
+          border: Border.all(color: selected ? cs.primary : cs.secondaryContainer, width: 2),
+          color: cs.secondaryContainer,
           boxShadow: const [
             BoxShadow(
               color: Colors.black12,
@@ -39,7 +40,7 @@ class CategoryCard extends StatelessWidget {
             name,
             style: tt.labelSmall?.copyWith(
               fontWeight: FontWeight.bold,
-              color: selected ? cs.onPrimary : cs.onSurfaceVariant,
+              color: cs.onSurfaceVariant,
             ),
           ),
         ),
