@@ -85,7 +85,7 @@ class DriverAcceptedPage extends StatelessWidget {
                       ),
                     ],
                   ),
-                  const SizedBox(height: 40),
+                  const SizedBox(height: 44),
                   Text(
                     "estimated arrival time".tr,
                     style: tt.titleMedium!.copyWith(color: cs.onSurface, fontWeight: FontWeight.bold),
