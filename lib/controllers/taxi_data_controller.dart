@@ -26,7 +26,7 @@ class TaxiDataController extends GetxController {
     if (taxiData == null) {
       await fetchTaxiData();
     }
-    drivers.addAll(taxiData!.drivers);
+    drivers.addAll(taxiData!.drivers); // todo: its reaching here
     fareRules = taxiData.fareRules;
     toggleLoading(false);
   }

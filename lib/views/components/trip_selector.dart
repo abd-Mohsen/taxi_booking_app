@@ -8,8 +8,8 @@ import 'category_card.dart';
 import 'custom_button.dart';
 import 'location_marker.dart';
 
-class TripSelector extends StatelessWidget {
-  const TripSelector({super.key});
+class TripPanel extends StatelessWidget {
+  const TripPanel({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -128,21 +128,21 @@ class TripSelector extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       CategoryCard(
-                        name: "economy",
+                        name: "economy".tr,
                         selected: homeController.selectedCarType == "economy",
                         onCategoryChange: () {
                           homeController.setCarType("economy");
                         },
                       ),
                       CategoryCard(
-                        name: "comfort",
+                        name: "comfort".tr,
                         selected: homeController.selectedCarType == "comfort",
                         onCategoryChange: () {
                           homeController.setCarType("comfort");
                         },
                       ),
                       CategoryCard(
-                        name: "premium",
+                        name: "premium".tr,
                         selected: homeController.selectedCarType == "premium",
                         onCategoryChange: () {
                           homeController.setCarType("premium");
@@ -154,7 +154,7 @@ class TripSelector extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text("Distance", style: tt.labelMedium!.copyWith(color: cs.onSurface)),
+                      Text("Distance".tr, style: tt.labelMedium!.copyWith(color: cs.onSurface)),
                       Text(
                         "${homeController.distance.toStringAsFixed(2)} KM",
                         style: tt.labelMedium!.copyWith(color: cs.onSurface),
@@ -165,7 +165,7 @@ class TripSelector extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text("Estimated Fare", style: tt.labelMedium!.copyWith(color: cs.onSurface)),
+                      Text("Estimated Fare".tr, style: tt.labelMedium!.copyWith(color: cs.onSurface)),
                       Text(
                         "${homeController.expectedFare.toStringAsFixed(2)} ${homeController.currency.tr}",
                         style: tt.labelMedium!.copyWith(color: cs.onSurface, fontWeight: FontWeight.bold),

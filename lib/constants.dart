@@ -14,7 +14,7 @@ const Duration kTimeOutDuration3 = Duration(seconds: 7);
 const Color kStartLocationColor = Color(0xff1E90FF);
 const Color kEndLocationColor = Color(0xffFF8C00);
 
-//todo: move to a separate widget
+//todo: move to a separate widget and localize snackbar
 
 Widget kEnableLocationDialog(onConfirm) => PopScope(
       canPop: false,

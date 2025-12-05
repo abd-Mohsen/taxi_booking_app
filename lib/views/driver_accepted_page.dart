@@ -88,13 +88,14 @@ class DriverAcceptedPage extends StatelessWidget {
                   const SizedBox(height: 40),
                   Text(
                     "estimated arrival time".tr,
-                    style: tt.titleMedium!.copyWith(color: cs.onSurface),
+                    style: tt.titleMedium!.copyWith(color: cs.onSurface, fontWeight: FontWeight.bold),
                   ),
+                  const SizedBox(height: 8),
                   Center(
                     child: CountDownTimer(
                       startTime: DateTime.now(),
                       countdownDuration: const Duration(minutes: 10),
-                      textStyle: tt.titleMedium!.copyWith(color: cs.onSurface),
+                      textStyle: tt.titleLarge!.copyWith(color: cs.onSurface, fontWeight: FontWeight.bold),
                     ),
                   ),
                 ],
@@ -108,7 +109,7 @@ class DriverAcceptedPage extends StatelessWidget {
                   isShort: true,
                   color: Colors.red,
                   child: Text(
-                    "cancel ride",
+                    "cancel ride".tr,
                     style: tt.titleMedium!.copyWith(color: cs.onPrimary),
                   ),
                 ),
