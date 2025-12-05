@@ -4,7 +4,8 @@ import '../../constants.dart';
 
 class LocationMarker extends StatelessWidget {
   final bool start;
-  const LocationMarker({super.key, required this.start});
+  final double? size;
+  const LocationMarker({super.key, required this.start, this.size});
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +15,7 @@ class LocationMarker extends StatelessWidget {
     return Icon(
       Icons.location_pin,
       color: start ? kStartLocationColor : kEndLocationColor,
-      size: 70,
+      size: size ?? 80,
     );
   }
 }

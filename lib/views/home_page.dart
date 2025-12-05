@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_osm_plugin/flutter_osm_plugin.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
+import 'package:taxi_booking_app/controllers/current_location_controller.dart';
 import 'package:taxi_booking_app/controllers/home_controller.dart';
 import 'package:get/get.dart';
 import 'package:taxi_booking_app/controllers/taxi_data_controller.dart';
@@ -19,6 +20,8 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     ColorScheme cs = Theme.of(context).colorScheme;
     TextTheme tt = Theme.of(context).textTheme;
+
+    Get.put(CurrentLocationController());
 
     return SafeArea(
       child: Scaffold(
@@ -148,6 +151,23 @@ class HomePage extends StatelessWidget {
                   right: 0,
                   left: 0,
                   child: TripSelector(),
+                ),
+                Visibility(
+                  visible: homeController.startSelectionMode,
+                  child: Positioned(
+                    left: 8,
+                    top: 8,
+                    child: FloatingActionButton.extended(
+                      onPressed: () {
+                        homeController.setMyLocation();
+                      },
+                      icon: Icon(Icons.my_location, color: cs.onPrimaryContainer, size: 23),
+                      label: Text(
+                        "select my location".tr,
+                        style: tt.labelMedium!.copyWith(color: cs.onPrimaryContainer),
+                      ),
+                    ),
+                  ),
                 )
               ],
             );

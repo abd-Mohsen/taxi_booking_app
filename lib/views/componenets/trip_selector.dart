@@ -5,6 +5,7 @@ import 'package:taxi_booking_app/controllers/home_controller.dart';
 import 'package:taxi_booking_app/controllers/request_ride_controller.dart';
 import 'package:taxi_booking_app/views/componenets/category_card.dart';
 import 'package:taxi_booking_app/views/componenets/custom_button.dart';
+import 'package:taxi_booking_app/views/componenets/location_marker.dart';
 
 class TripSelector extends StatelessWidget {
   const TripSelector({super.key});
@@ -67,50 +68,61 @@ class TripSelector extends StatelessWidget {
                   ),
                   const SizedBox(height: 8),
                   Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      ElevatedButton(
-                        onPressed: () {
-                          homeController.toggleSelection(start: true, status: !homeController.startSelectionMode);
-                        },
-                        style: ElevatedButton.styleFrom(
-                          padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 8),
-                          backgroundColor: homeController.startSelectionMode ? Colors.red : cs.primary,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(16),
+                      Row(
+                        children: [
+                          const Padding(
+                            padding: EdgeInsets.symmetric(horizontal: 4.0),
+                            child: LocationMarker(start: true, size: 25),
                           ),
-                        ),
-                        child: Text(
-                          homeController.startSelectionMode ? "select on map".tr : "Select Start".tr,
-                          style: tt.labelSmall?.copyWith(color: cs.onPrimary),
-                        ),
+                          ElevatedButton(
+                            onPressed: () {
+                              homeController.toggleSelection(start: true, status: !homeController.startSelectionMode);
+                            },
+                            style: ElevatedButton.styleFrom(
+                              padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 10),
+                              backgroundColor: homeController.startSelectionMode ? Colors.red : cs.primary,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(16),
+                              ),
+                            ),
+                            child: Text(
+                              homeController.startSelectionMode ? "select on map".tr : "Select Start".tr,
+                              style: tt.labelSmall?.copyWith(color: cs.onPrimary),
+                            ),
+                          ),
+                        ],
                       ),
-                      const SizedBox(width: 8),
-                      IconButton(
-                        onPressed: () {
-                          //
-                        },
-                        icon: Icon(Icons.my_location, color: cs.primaryContainer, size: 23),
+                      // const SizedBox(height: 4),
+                      Row(
+                        children: [
+                          const Padding(
+                            padding: EdgeInsets.symmetric(horizontal: 4.0),
+                            child: LocationMarker(start: false, size: 25),
+                          ),
+                          ElevatedButton(
+                            onPressed: () {
+                              homeController.toggleSelection(start: false, status: !homeController.endSelectionMode);
+                            },
+                            style: ElevatedButton.styleFrom(
+                              padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 8),
+                              backgroundColor: homeController.endSelectionMode ? Colors.red : cs.primary,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(16),
+                              ),
+                            ),
+                            child: Text(
+                              homeController.endSelectionMode ? "select on map".tr : "Select Destination".tr,
+                              style: tt.labelSmall?.copyWith(color: cs.onPrimary),
+                            ),
+                          ),
+                        ],
                       ),
                     ],
                   ),
-                  const SizedBox(height: 4),
-                  ElevatedButton(
-                    onPressed: () {
-                      homeController.toggleSelection(start: false, status: !homeController.endSelectionMode);
-                    },
-                    style: ElevatedButton.styleFrom(
-                      padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 8),
-                      backgroundColor: homeController.endSelectionMode ? Colors.red : cs.primary,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(16),
-                      ),
-                    ),
-                    child: Text(
-                      homeController.endSelectionMode ? "select on map".tr : "Select Destination".tr,
-                      style: tt.labelSmall?.copyWith(color: cs.onPrimary),
-                    ),
-                  ),
-                  const SizedBox(height: 16),
+                  const SizedBox(height: 24),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -137,7 +149,7 @@ class TripSelector extends StatelessWidget {
                       ),
                     ],
                   ),
-                  const SizedBox(height: 28),
+                  const SizedBox(height: 24),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [

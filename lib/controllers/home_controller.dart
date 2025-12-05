@@ -1,5 +1,6 @@
 import 'package:flutter_osm_plugin/flutter_osm_plugin.dart';
 import 'package:get/get.dart';
+import 'package:taxi_booking_app/controllers/current_location_controller.dart';
 import 'package:taxi_booking_app/controllers/taxi_data_controller.dart';
 import 'package:taxi_booking_app/models/driver_model.dart';
 import 'package:taxi_booking_app/views/componenets/driver_marker.dart';
@@ -50,11 +51,13 @@ class HomeController extends GetxController {
       endSelectionMode = status;
       startSelectionMode = false;
     }
+    if (bothLocationsSelected) calculateDistance();
     update();
   }
 
   GeoPoint? startLocation;
   GeoPoint? endLocation;
+  GeoPoint? myLocation;
 
   bool get bothLocationsSelected => startLocation != null && endLocation != null;
 
@@ -88,6 +91,22 @@ class HomeController extends GetxController {
     addDriversMarkers(taxiDataController.drivers);
   }
 
+  void setMyLocation() async {
+    CurrentLocationController currentLocationController = Get.find();
+    if (currentLocationController.currentPosition == null) return;
+    myLocation = GeoPoint(
+      latitude: currentLocationController.currentPosition!.latitude,
+      longitude: currentLocationController.currentPosition!.longitude,
+    );
+    if (startLocation != null) mapController.removeMarker(startLocation!);
+    startLocation = myLocation;
+    await mapController.addMarker(
+      startLocation!,
+      markerIcon: const MarkerIcon(iconWidget: LocationMarker(start: true)),
+    );
+    toggleSelection(start: true, status: false);
+  }
+
   //-----------------------
 
   String selectedCarType = "comfort";
@@ -109,7 +128,7 @@ class HomeController extends GetxController {
       endLocation!.latitude,
       endLocation!.longitude,
     );
-    update();
+    // update();
   }
 
   //--------------
@@ -117,7 +136,7 @@ class HomeController extends GetxController {
   double expectedFare = 0.0;
 
   void calculateFare() {
-    //
+    //todo
   }
 
   //---------

@@ -33,12 +33,12 @@ class MyApp extends StatelessWidget {
       darkTheme: MyThemes.myDarkMode, //custom dark theme
       themeMode: t.getThemeMode(),
       debugShowCheckedModeBanner: false,
-      // builder: (context, child) {
-      //   return MediaQuery(
-      //     data: MediaQuery.of(context).copyWith(devicePixelRatio: 1, textScaler: const TextScaler.linear(1)),
-      //     child: child!,
-      //   );
-      // },
+      builder: (context, child) {
+        return MediaQuery(
+          data: MediaQuery.of(context).copyWith(devicePixelRatio: 1, textScaler: const TextScaler.linear(1)),
+          child: child!,
+        );
+      },
     );
   }
 }
