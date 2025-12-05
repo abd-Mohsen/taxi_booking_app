@@ -50,7 +50,8 @@ class HomePage extends StatelessWidget {
                           homeController.onMapLoaded();
                         },
                         onGeoPointClicked: (driverLocation) {
-                          DriverModel driver = homeController.driverFromLocation[driverLocation]!;
+                          DriverModel? driver = homeController.driverFromLocation[driverLocation];
+                          if (driver == null) return; // if the marker is not a driver marker
                           showMaterialModalBottomSheet(
                             context: context,
                             backgroundColor: Colors.transparent,

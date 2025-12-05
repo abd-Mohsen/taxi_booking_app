@@ -17,27 +17,30 @@ class CategoryCard extends StatelessWidget {
     final cs = Theme.of(context).colorScheme;
     final tt = Theme.of(context).textTheme;
 
-    return AnimatedContainer(
-      duration: const Duration(milliseconds: 200),
-      width: 110,
-      padding: const EdgeInsets.symmetric(vertical: 8),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(8),
-        color: selected ? cs.primary : cs.secondaryContainer,
-        boxShadow: const [
-          BoxShadow(
-            color: Colors.black12,
-            blurRadius: 6,
-            offset: Offset(0, 3),
-          )
-        ],
-      ),
-      child: Center(
-        child: Text(
-          name,
-          style: tt.labelSmall?.copyWith(
-            fontWeight: FontWeight.bold,
-            color: selected ? cs.onPrimary : cs.onSurfaceVariant,
+    return InkWell(
+      onTap: onCategoryChange,
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 100),
+        width: 110,
+        padding: const EdgeInsets.symmetric(vertical: 8),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(8),
+          color: selected ? cs.primary : cs.secondaryContainer,
+          boxShadow: const [
+            BoxShadow(
+              color: Colors.black12,
+              blurRadius: 6,
+              offset: Offset(0, 3),
+            )
+          ],
+        ),
+        child: Center(
+          child: Text(
+            name,
+            style: tt.labelSmall?.copyWith(
+              fontWeight: FontWeight.bold,
+              color: selected ? cs.onPrimary : cs.onSurfaceVariant,
+            ),
           ),
         ),
       ),

@@ -3,18 +3,60 @@ import 'package:get/get.dart';
 import 'package:taxi_booking_app/controllers/taxi_data_controller.dart';
 import 'package:taxi_booking_app/models/driver_model.dart';
 import 'package:taxi_booking_app/views/componenets/driver_marker.dart';
+import 'package:taxi_booking_app/views/componenets/location_marker.dart';
 
 import '../services/remote_services/calculate_distance_service.dart';
+import 'package:flutter/material.dart';
 
 class HomeController extends GetxController {
   @override
   void onInit() {
-    // TODO: implement onInit
+    WidgetsBinding.instance.addPostFrameCallback(
+      (_) {
+        mapController.listenerMapSingleTapping.addListener(
+          () async {
+            if (startSelectionMode) {
+              if (startLocation != null) mapController.removeMarker(startLocation!);
+              startLocation = mapController.listenerMapSingleTapping.value!;
+              await mapController.addMarker(
+                startLocation!,
+                markerIcon: const MarkerIcon(iconWidget: LocationMarker(start: true)),
+              );
+              toggleSelection(start: true, status: false);
+            } else if (endSelectionMode) {
+              if (endLocation != null) mapController.removeMarker(endLocation!);
+              endLocation = mapController.listenerMapSingleTapping.value!;
+              await mapController.addMarker(
+                endLocation!,
+                markerIcon: const MarkerIcon(iconWidget: LocationMarker(start: false)),
+              );
+              toggleSelection(start: false, status: false);
+            }
+          },
+        );
+      },
+    );
     super.onInit();
+  }
+
+  bool startSelectionMode = false; // enabled when we wanna choose start location
+  bool endSelectionMode = false; // enabled when we wanna choose end location
+
+  void toggleSelection({bool start = true, bool status = true}) {
+    if (start) {
+      startSelectionMode = status;
+      endSelectionMode = false;
+    } else {
+      endSelectionMode = status;
+      startSelectionMode = false;
+    }
+    update();
   }
 
   GeoPoint? startLocation;
   GeoPoint? endLocation;
+
+  bool get bothLocationsSelected => startLocation != null && endLocation != null;
 
   MapController mapController = MapController(
     initMapWithUserPosition: const UserTrackingOption(
@@ -46,6 +88,8 @@ class HomeController extends GetxController {
     addDriversMarkers(taxiDataController.drivers);
   }
 
+  //-----------------------
+
   String selectedCarType = "comfort";
 
   void setCarType(String newValue) {
@@ -53,10 +97,12 @@ class HomeController extends GetxController {
     update();
   }
 
+  //------------------------
+
   double distance = 0.0;
 
   void calculateDistance() {
-    if (startLocation == null || endLocation == null) return;
+    if (!bothLocationsSelected) return;
     distance = CalculateDistanceService().distanceInKm(
       startLocation!.latitude,
       startLocation!.longitude,
@@ -66,13 +112,17 @@ class HomeController extends GetxController {
     update();
   }
 
+  //--------------
+
   double expectedFare = 0.0;
 
   void calculateFare() {
     //
   }
 
-  bool isPanelHidden = false;
+  //---------
+
+  bool isPanelHidden = true;
 
   void toggleHiddenPanel() {
     isPanelHidden = !isPanelHidden;

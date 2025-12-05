@@ -11,6 +11,9 @@ const Duration kTimeOutDuration = Duration(seconds: 30);
 const Duration kTimeOutDuration2 = Duration(seconds: 15);
 const Duration kTimeOutDuration3 = Duration(seconds: 7);
 
+const Color kStartLocationColor = Color(0xff1E90FF);
+const Color kEndLocationColor = Color(0xffFF8C00);
+
 //todo: move to a separate widget
 
 Widget kEnableLocationDialog(onConfirm) => PopScope(
