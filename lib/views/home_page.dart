@@ -7,6 +7,7 @@ import 'package:get/get.dart';
 import 'package:taxi_booking_app/controllers/taxi_data_controller.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:taxi_booking_app/models/driver_model.dart';
+import 'package:taxi_booking_app/views/componenets/trip_selector.dart';
 
 import 'componenets/blurred_sheet.dart';
 import 'componenets/sheet_details_tile.dart';
@@ -21,9 +22,14 @@ class HomePage extends StatelessWidget {
 
     return SafeArea(
       child: Scaffold(
-        // appBar: AppBar(
-        //   backgroundColor: Colors.transparent,
-        // ),
+        appBar: AppBar(
+          backgroundColor: cs.primary,
+          centerTitle: true,
+          title: Text(
+            "taxi booking test".tr,
+            style: tt.titleSmall!.copyWith(color: cs.onPrimary),
+          ),
+        ),
         backgroundColor: cs.surface,
         body: GetBuilder<HomeController>(
           init: HomeController(),
@@ -44,7 +50,7 @@ class HomePage extends StatelessWidget {
                           homeController.onMapLoaded();
                         },
                         onGeoPointClicked: (driverLocation) {
-                          DriverModel driver = homeController.DriverFromLocation[driverLocation]!;
+                          DriverModel driver = homeController.driverFromLocation[driverLocation]!;
                           showMaterialModalBottomSheet(
                             context: context,
                             backgroundColor: Colors.transparent,
@@ -92,19 +98,28 @@ class HomePage extends StatelessWidget {
                                     ],
                                   ),
                                   Padding(
-                                    padding: const EdgeInsets.only(top: 16.0),
-                                    child: Center(
-                                      child: RatingBarIndicator(
-                                        rating: driver.rating,
-                                        itemBuilder: (context, index) => const Icon(
-                                          Icons.star,
-                                          color: Colors.amber,
+                                    padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 20),
+                                    child: Column(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          "rating".tr,
+                                          style: tt.labelSmall!.copyWith(color: cs.onSurface.withValues(alpha: 0.5)),
+                                          textAlign: TextAlign.start,
                                         ),
-                                        itemCount: 5,
-                                        itemSize: 30.0,
-                                        unratedColor: Colors.grey,
-                                        direction: Axis.horizontal,
-                                      ),
+                                        const SizedBox(height: 8),
+                                        RatingBarIndicator(
+                                          rating: driver.rating,
+                                          itemBuilder: (context, index) => const Icon(
+                                            Icons.star,
+                                            color: Colors.amber,
+                                          ),
+                                          itemCount: 5,
+                                          itemSize: 22.0,
+                                          unratedColor: Colors.grey,
+                                          direction: Axis.horizontal,
+                                        ),
+                                      ],
                                     ),
                                   ),
                                 ],
@@ -126,6 +141,12 @@ class HomePage extends StatelessWidget {
                       ),
                     );
                   },
+                ),
+                const Positioned(
+                  bottom: 0,
+                  right: 0,
+                  left: 0,
+                  child: TripSelector(),
                 )
               ],
             );

@@ -4,12 +4,17 @@ import 'package:taxi_booking_app/controllers/taxi_data_controller.dart';
 import 'package:taxi_booking_app/models/driver_model.dart';
 import 'package:taxi_booking_app/views/componenets/driver_marker.dart';
 
+import '../services/remote_services/calculate_distance_service.dart';
+
 class HomeController extends GetxController {
   @override
   void onInit() {
     // TODO: implement onInit
     super.onInit();
   }
+
+  GeoPoint? startLocation;
+  GeoPoint? endLocation;
 
   MapController mapController = MapController(
     initMapWithUserPosition: const UserTrackingOption(
@@ -20,13 +25,13 @@ class HomeController extends GetxController {
 
   bool isMapLoaded = false;
 
-  Map<GeoPoint, DriverModel> DriverFromLocation = {};
+  Map<GeoPoint, DriverModel> driverFromLocation = {};
 
   void addDriversMarkers(List<DriverModel> drivers) {
     if (!isMapLoaded) return;
     for (DriverModel driver in drivers) {
       GeoPoint location = GeoPoint(latitude: driver.location.latitude, longitude: driver.location.longitude);
-      this.DriverFromLocation[location] = driver;
+      driverFromLocation[location] = driver;
       mapController.addMarker(
         location,
         markerIcon: MarkerIcon(iconWidget: DriverMarker(driver: driver)),
@@ -39,5 +44,38 @@ class HomeController extends GetxController {
     TaxiDataController taxiDataController = Get.find();
     await taxiDataController.fetchTaxiData();
     addDriversMarkers(taxiDataController.drivers);
+  }
+
+  String selectedCarType = "comfort";
+
+  void setCarType(String newValue) {
+    selectedCarType = newValue;
+    update();
+  }
+
+  double distance = 0.0;
+
+  void calculateDistance() {
+    if (startLocation == null || endLocation == null) return;
+    distance = CalculateDistanceService().distanceInKm(
+      startLocation!.latitude,
+      startLocation!.longitude,
+      endLocation!.latitude,
+      endLocation!.longitude,
+    );
+    update();
+  }
+
+  double expectedFare = 0.0;
+
+  void calculateFare() {
+    //
+  }
+
+  bool isPanelHidden = false;
+
+  void toggleHiddenPanel() {
+    isPanelHidden = !isPanelHidden;
+    update();
   }
 }
