@@ -46,11 +46,11 @@ class TripSelector extends StatelessWidget {
                 children: [
                   Text(
                     "Trip Details".tr,
-                    style: tt.titleSmall?.copyWith(color: cs.primary, fontWeight: FontWeight.bold),
+                    style: tt.titleSmall?.copyWith(color: cs.secondary, fontWeight: FontWeight.bold),
                   ),
                   Icon(
                     homeController.isPanelHidden ? Icons.arrow_drop_up_sharp : Icons.arrow_drop_down_sharp,
-                    color: cs.primary,
+                    color: cs.secondary,
                     size: 35,
                   )
                 ],
@@ -74,7 +74,7 @@ class TripSelector extends StatelessWidget {
                       Row(
                         children: [
                           const Padding(
-                            padding: EdgeInsets.symmetric(horizontal: 4.0),
+                            padding: EdgeInsets.symmetric(horizontal: 2.0),
                             child: LocationMarker(start: true, size: 25),
                           ),
                           ElevatedButton(
@@ -99,7 +99,7 @@ class TripSelector extends StatelessWidget {
                       Row(
                         children: [
                           const Padding(
-                            padding: EdgeInsets.symmetric(horizontal: 4.0),
+                            padding: EdgeInsets.symmetric(horizontal: 2.0),
                             child: LocationMarker(start: false, size: 25),
                           ),
                           ElevatedButton(

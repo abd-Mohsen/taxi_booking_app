@@ -42,7 +42,7 @@ class CustomButton extends StatelessWidget {
                 : null,
           ),
           child: Padding(
-            padding: EdgeInsets.symmetric(vertical: (isShort ?? false) ? 12 : 14.0),
+            padding: EdgeInsets.symmetric(vertical: (isShort ?? false) ? 12 : 16.0),
             child: SizedBox(
               width: double.infinity,
               child: Center(child: child),

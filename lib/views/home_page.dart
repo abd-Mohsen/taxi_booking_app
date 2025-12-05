@@ -8,6 +8,7 @@ import 'package:get/get.dart';
 import 'package:taxi_booking_app/controllers/taxi_data_controller.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:taxi_booking_app/models/driver_model.dart';
+import 'package:taxi_booking_app/views/componenets/my_drawer.dart';
 import 'package:taxi_booking_app/views/componenets/trip_selector.dart';
 
 import 'componenets/blurred_sheet.dart';
@@ -25,7 +26,9 @@ class HomePage extends StatelessWidget {
 
     return SafeArea(
       child: Scaffold(
+        drawer: const MyDrawer(),
         appBar: AppBar(
+          foregroundColor: cs.onPrimary,
           backgroundColor: cs.primary,
           centerTitle: true,
           title: Text(
