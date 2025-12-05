@@ -10,15 +10,20 @@ import '../views/components/driver_marker.dart';
 import '../views/components/location_marker.dart';
 
 class HomeController extends GetxController {
+  final bool isTest;
+  HomeController({this.isTest = false});
+
   @override
   void onInit() {
+    if (isTest) return;
     WidgetsBinding.instance.addPostFrameCallback(
       (_) {
         mapController.listenerMapSingleTapping.addListener(
           () async {
             if (startSelectionMode) {
               if (startLocation != null) mapController.removeMarker(startLocation!);
-              startLocation = mapController.listenerMapSingleTapping.value!;
+              // startLocation = mapController.listenerMapSingleTapping.value!;
+              setStartLocation(mapController.listenerMapSingleTapping.value!);
               await mapController.addMarker(
                 startLocation!,
                 markerIcon: const MarkerIcon(iconWidget: LocationMarker(start: true)),
@@ -26,7 +31,8 @@ class HomeController extends GetxController {
               toggleSelection(start: true, status: false);
             } else if (endSelectionMode) {
               if (endLocation != null) mapController.removeMarker(endLocation!);
-              endLocation = mapController.listenerMapSingleTapping.value!;
+              // endLocation = mapController.listenerMapSingleTapping.value!;
+              setEndLocation(mapController.listenerMapSingleTapping.value!);
               await mapController.addMarker(
                 endLocation!,
                 markerIcon: const MarkerIcon(iconWidget: LocationMarker(start: false)),
@@ -38,6 +44,16 @@ class HomeController extends GetxController {
       },
     );
     super.onInit();
+  }
+
+  @override
+  void onClose() {
+    if (isMapLoaded) {
+      mapController.dispose();
+    }
+    super.dispose();
+
+    super.onClose();
   }
 
   bool startSelectionMode = false; // enabled when we wanna choose start location
@@ -72,6 +88,14 @@ class HomeController extends GetxController {
   bool isMapLoaded = false;
 
   Map<GeoPoint, DriverModel> driverFromLocation = {};
+
+  void setStartLocation(GeoPoint newLocation) {
+    startLocation = newLocation;
+  }
+
+  void setEndLocation(GeoPoint newLocation) {
+    endLocation = newLocation;
+  }
 
   void addDriversMarkers(List<DriverModel> drivers) {
     if (!isMapLoaded) return;
