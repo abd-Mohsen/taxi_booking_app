@@ -8,7 +8,7 @@ class DriverMarker extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     ColorScheme cs = Theme.of(context).colorScheme;
-    TextTheme tt = Theme.of(context).textTheme;
+    // TextTheme tt = Theme.of(context).textTheme;
 
     return CircleAvatar(
       backgroundColor: cs.primary,

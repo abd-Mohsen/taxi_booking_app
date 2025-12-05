@@ -24,7 +24,7 @@ class TaxiDataController extends GetxController {
     toggleLoading(true);
     TaxiDataModel? taxiData = await TaxiDataService().fetchTaxiData();
     if (taxiData == null) {
-      await Future.delayed(Duration(seconds: 8));
+      await Future.delayed(const Duration(seconds: 6));
       await fetchTaxiData();
     } else {
       drivers.addAll(taxiData.drivers);

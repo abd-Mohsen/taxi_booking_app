@@ -16,7 +16,7 @@ class CountDownTimer extends StatefulWidget {
   });
 
   @override
-  _CountDownTimerState createState() => _CountDownTimerState();
+  State<CountDownTimer> createState() => _CountDownTimerState();
 }
 
 class _CountDownTimerState extends State<CountDownTimer> {
@@ -58,7 +58,7 @@ class _CountDownTimerState extends State<CountDownTimer> {
   }
 
   String _formatDuration(Duration d) {
-    final hours = d.inHours.toString().padLeft(2, '0');
+    // final hours = d.inHours.toString().padLeft(2, '0');
     final minutes = d.inMinutes.remainder(60).toString().padLeft(2, '0');
     final seconds = d.inSeconds.remainder(60).toString().padLeft(2, '0');
     return "$minutes:$seconds";
@@ -79,5 +79,19 @@ class _CountDownTimerState extends State<CountDownTimer> {
       _formatDuration(remaining),
       style: widget.textStyle,
     );
+  }
+}
+
+class Clone extends StatefulWidget {
+  const Clone({super.key});
+
+  @override
+  State<Clone> createState() => _CloneState();
+}
+
+class _CloneState extends State<Clone> {
+  @override
+  Widget build(BuildContext context) {
+    return const Placeholder();
   }
 }

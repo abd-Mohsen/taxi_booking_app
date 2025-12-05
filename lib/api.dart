@@ -34,7 +34,7 @@ class Api {
           .timeout(kTimeOutDuration);
 
       String responseBody = utf8Decode ? utf8.decode(latin1.encode(response.body)) : response.body;
-      print("$responseBody =========== ${response.statusCode}");
+      // print("$responseBody =========== ${response.statusCode}");
       if (response.statusCode >= 500) kServerErrorSnackBar();
       return response.statusCode == 200 ? responseBody : null;
     } on TimeoutException {

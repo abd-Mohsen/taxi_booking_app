@@ -48,16 +48,16 @@ class PermissionService {
     // Check if we should show rationale (Android-specific)
     if (await permission.shouldShowRequestRationale) {
       // User selected "Deny" but not "Don't ask again"
-      print("Permission denied (can ask again)");
+      // print("Permission denied (can ask again)");
       return false;
     } else {
       // Either permanently denied or first denial on iOS
-      print("Permission permanently denied or first denial on iOS");
+      // print("Permission permanently denied or first denial on iOS");
 
       // On iOS, first denial returns false for shouldShowRequestRationale
       // So we need additional checks for iOS
       if (Platform.isIOS && status.isDenied && !status.isPermanentlyDenied) {
-        print("First denial on iOS - can ask again");
+        // print("First denial on iOS - can ask again");
         return false;
       }
 

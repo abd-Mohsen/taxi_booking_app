@@ -11,7 +11,7 @@ class RequestRideController extends GetxController {
   Future<void> requestRide() async {
     toggleLoading(true);
     await Future.delayed(const Duration(seconds: 2));
-    Get.to(() => DriverAcceptedPage());
+    Get.to(() => const DriverAcceptedPage());
     toggleLoading(false);
   }
 }
