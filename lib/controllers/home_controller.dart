@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:taxi_booking_app/controllers/current_location_controller.dart';
 import 'package:taxi_booking_app/controllers/taxi_data_controller.dart';
 import 'package:taxi_booking_app/models/driver_model.dart';
+import 'package:taxi_booking_app/models/fare_rules_model.dart';
 import 'package:taxi_booking_app/views/componenets/driver_marker.dart';
 import 'package:taxi_booking_app/views/componenets/location_marker.dart';
 
@@ -52,6 +53,7 @@ class HomeController extends GetxController {
       startSelectionMode = false;
     }
     if (bothLocationsSelected) calculateDistance();
+    if (bothLocationsSelected) calculateFare();
     update();
   }
 
@@ -113,6 +115,7 @@ class HomeController extends GetxController {
 
   void setCarType(String newValue) {
     selectedCarType = newValue;
+    calculateFare();
     update();
   }
 
@@ -134,9 +137,19 @@ class HomeController extends GetxController {
   //--------------
 
   double expectedFare = 0.0;
+  String currency = "SYP";
 
   void calculateFare() {
-    //todo
+    TaxiDataController taxiDataController = Get.find();
+    if (taxiDataController.fareRules == null) return;
+    CarType carType = taxiDataController.fareRules!.perKmRate;
+    double rate = selectedCarType == "economy"
+        ? carType.economy
+        : selectedCarType == "comfort"
+            ? carType.comfort
+            : carType.premium;
+    expectedFare = rate * distance;
+    currency = taxiDataController.fareRules!.currency;
   }
 
   //---------

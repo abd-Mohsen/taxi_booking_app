@@ -155,7 +155,7 @@ class TripSelector extends StatelessWidget {
                     children: [
                       Text("Distance", style: tt.labelMedium!.copyWith(color: cs.onSurface)),
                       Text(
-                        "${homeController.distance.toStringAsFixed(2)} km",
+                        "${homeController.distance.toStringAsFixed(2)} KM",
                         style: tt.labelMedium!.copyWith(color: cs.onSurface),
                       ),
                     ],
@@ -166,7 +166,7 @@ class TripSelector extends StatelessWidget {
                     children: [
                       Text("Estimated Fare", style: tt.labelMedium!.copyWith(color: cs.onSurface)),
                       Text(
-                        "${homeController.expectedFare.toStringAsFixed(2)} ${"SYP".tr}",
+                        "${homeController.expectedFare.toStringAsFixed(2)} ${homeController.currency.tr}",
                         style: tt.labelMedium!.copyWith(color: cs.onSurface, fontWeight: FontWeight.bold),
                       ),
                     ],
