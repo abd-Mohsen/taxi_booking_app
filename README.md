@@ -2,9 +2,7 @@
 
 *A modern taxi booking app built with Flutter, GetX, OSM Maps, localization & dark theme support.*
 
-<!-- BADGE PLACEHOLDER -->
-
-**[CI/CD Status Badge Here]**
+[![Flutter CI/CD](https://github.com/abd-Mohsen/taxi_booking_app/actions/workflows/flutter-ci.yml/badge.svg)](https://github.com/abd-Mohsen/taxi_booking_app/actions/workflows/flutter-ci.yml)
 
 ---
 
@@ -63,8 +61,8 @@ lib/
 ### 1- Clone the repository
 
 ```bash
-git clone https://github.com/abd-Mohsen/taxi_booking_module.git
-cd taxi_booking_module
+git clone https://github.com/abd-Mohsen/taxi_booking_app.git
+cd taxi_booking_app
 ```
 
 ### 2- Install dependencies
@@ -89,3 +87,9 @@ flutter run
 * Ride history
 * Notifications
 * Better map mocking for widget tests
+
+## Download APK
+
+You can download the latest APK from GitHub Actions artifacts
+
+**[open the latest workflow](https://github.com/abd-mohsen/taxi_booking_app/actions)**
