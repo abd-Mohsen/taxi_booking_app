@@ -1,16 +1,105 @@
-# taxi_booking_module
+# Taxi Booking App
 
-A Flutter developer assessment task
+*A modern taxi booking app built with Flutter, GetX, OSM Maps, localization & dark theme support.*
+
+<!-- BADGE PLACEHOLDER -->
+
+**[CI/CD Status Badge Here]**
+
+---
+
+## Demo
+
+<!-- GIF PLACEHOLDER -->
+
+**[Insert app demo GIF here]**
+
+---
+
+## Features
+
+✔️ OSM Map integration (live location, driver markers)
+✔️ GetX state management + dependency injection
+✔️ Responsive UI with Material 3
+✔️ Dark & Light theme toggle
+✔️ Multi-language localization (en, ar)
+✔️ Modular controllers & services
+✔️ Driver info bottom sheet
+✔️ Trip selection panel
+✔️ Drawer with settings
+✔️ driver accepted page with ETA
+
+---
+
+## Project Architecture
+
+This project follows a **clean, predictable, GetX-driven architecture**:
+
+```
+lib/
+ ├─ controllers/           # GetX controllers (Home, TaxiData, Location, Theme…)
+ ├─ models/                # Pure data models (TaxiDataModel, DriverModel…)
+ ├─ services/              # API & data sources (TaxiDataService)
+ ├─ views/                 # UI screens (HomePage, components…)
+ │    ├─ components/       # Drawer, sheets, tiles, widgets
+ ├─ locale                 # Localization JSON files
+ ├─ themes                 # Light/Dark theme config
+ ├─ main.dart              # App entry point, dependency injection, GetMaterialApp
+```
+
+### Why this structure?
+
+* **Separation of concerns**: UI, logic, and data are cleanly split.
+* **Easy testing**: controllers and services are unit-test friendly.
+* **Scalable**: features can grow without refactoring the core.
+* **Clear GetX usage**:
+
+    * `Get.put()` for initialization
+    * `GetBuilder` for UI updates
+    * Centralized routes & translations
+
+---
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+### 1️⃣ Clone the repository
 
-A few resources to get you started if this is your first Flutter project:
+```bash
+git clone https://github.com/abd-Mohsen/taxi-booking-module-test.git
+cd taxi_booking_module
+```
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+### 2️⃣ Install dependencies
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+```bash
+flutter pub get
+```
+
+### 3️⃣ Run the app
+
+```bash
+flutter run
+```
+
+---
+
+
+## CI/CD (GitHub Actions Example)
+
+<!-- CI/CD BADGE PLACEHOLDER -->
+
+**[Insert GitHub Actions badge here]**
+
+## Future Improvements
+
+* Real-time driver tracking (WebSockets)
+* Payment integration
+* Ride history
+* Notifications
+* Better map mocking for widget tests
+
+---
+
+## Contributing
+
+Pull requests are welcome! For major changes, open an issue first.

@@ -13,7 +13,7 @@ class PermissionService {
       Permission.camera: "camera permissions",
     };
 
-    // todo: separate UI
+    // separate UI
     return AlertDialog(
       backgroundColor: Colors.white,
       title: Text("${permissionName[permission]?.tr ?? "permissions".tr} ${"are denied".tr}",

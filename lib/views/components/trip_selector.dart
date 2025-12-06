@@ -180,7 +180,7 @@ class TripPanel extends StatelessWidget {
                         child: CustomButton(
                           onTap: () {
                             if (!homeController.bothLocationsSelected) return;
-                            requestRideController.requestRide(); //todo: show a dialog
+                            requestRideController.requestRide();
                           },
                           color: homeController.bothLocationsSelected ? cs.primary : Colors.grey,
                           child: requestRideController.isLoading
