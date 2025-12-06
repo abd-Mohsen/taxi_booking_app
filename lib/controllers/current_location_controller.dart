@@ -15,6 +15,7 @@ class CurrentLocationController extends GetxController {
   }
 
   Future<void> determinePosition() async {
+    await Future.delayed(const Duration(seconds: 2));
     bool serviceEnabled;
     LocationPermission permission;
 

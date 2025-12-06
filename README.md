@@ -12,8 +12,6 @@
 
 ![App Demo](demo.gif)
 
-**[Insert app demo GIF here]**
-
 ---
 
 ## Features
@@ -62,20 +60,20 @@ lib/
 
 ## Getting Started
 
-### 1️⃣ Clone the repository
+### 1- Clone the repository
 
 ```bash
-git clone https://github.com/abd-Mohsen/taxi-booking-module-test.git
+git clone https://github.com/abd-Mohsen/taxi_booking_module.git
 cd taxi_booking_module
 ```
 
-### 2️⃣ Install dependencies
+### 2- Install dependencies
 
 ```bash
 flutter pub get
 ```
 
-### 3️⃣ Run the app
+### 3- Run the app
 
 ```bash
 flutter run
