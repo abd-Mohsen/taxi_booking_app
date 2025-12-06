@@ -10,7 +10,7 @@
 
 ## Demo
 
-<!-- GIF PLACEHOLDER -->
+![App Demo](demo.gif)
 
 **[Insert app demo GIF here]**
 
@@ -18,22 +18,22 @@
 
 ## Features
 
-✔️ OSM Map integration (live location, driver markers)
-✔️ GetX state management + dependency injection
-✔️ Responsive UI with Material 3
-✔️ Dark & Light theme toggle
-✔️ Multi-language localization (en, ar)
-✔️ Modular controllers & services
-✔️ Driver info bottom sheet
-✔️ Trip selection panel
-✔️ Drawer with settings
-✔️ driver accepted page with ETA
+- OSM Map integration (live location, driver markers)
+- GetX state management + dependency injection
+- Responsive UI with Material 3
+- Dark & Light theme toggle
+- Multi-language localization (en, ar)
+- Modular controllers & services
+- Driver info bottom sheet
+- Trip selection panel
+- Drawer with settings
+- driver accepted page with ETA
 
 ---
 
 ## Project Architecture
 
-This project follows a **clean, predictable, GetX-driven architecture**:
+This project follows a **clean, predictable, MVC architecture**:
 
 ```
 lib/
@@ -54,9 +54,9 @@ lib/
 * **Scalable**: features can grow without refactoring the core.
 * **Clear GetX usage**:
 
-    * `Get.put()` for initialization
-    * `GetBuilder` for UI updates
-    * Centralized routes & translations
+  * `Get.put()` for initialization
+  * `GetBuilder` for UI updates
+  * Centralized routes & translations
 
 ---
 
@@ -84,12 +84,6 @@ flutter run
 ---
 
 
-## CI/CD (GitHub Actions Example)
-
-<!-- CI/CD BADGE PLACEHOLDER -->
-
-**[Insert GitHub Actions badge here]**
-
 ## Future Improvements
 
 * Real-time driver tracking (WebSockets)
@@ -97,9 +91,3 @@ flutter run
 * Ride history
 * Notifications
 * Better map mocking for widget tests
-
----
-
-## Contributing
-
-Pull requests are welcome! For major changes, open an issue first.
